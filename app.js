@@ -1,3 +1,4 @@
+
 import express from "express";
 import mongoose from "mongoose";
 import path from 'path'
@@ -30,9 +31,10 @@ app.get('/',async (req,res)=>{
 })
 app.use('/user',handleUserRouter)
 app.use('/blog',handleBlogsRouter)
-const port=8000
 
-mongoose.connect('mongodb://127.0.0.1:27017/myblogs').then(()=>{
+const port=process.env.PORT || 8000
+
+mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/myblogs').then(()=>{
     console.log("mongodb is connected")
 }).catch((err)=>{
     console.log(err)

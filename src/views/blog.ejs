@@ -6,24 +6,59 @@
     <title>Document</title>
     <%- include('./partials/tailwind') %>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 font-sans antialiased">
     <%- include('./partials/nav') %>
 
     <div class="w-full min-h-screen p-6 md:p-10">
-        <div class="flex flex-col items-center space-y-6">
+        <div class="flex flex-col items-center space-y-8">
+            <!-- Blog Image -->
             <div class="w-full max-w-4xl">
-                <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>" class="w-full h-auto object-cover rounded-lg shadow-lg">
+                <img src="<%= blog.coverImageURL %>" alt="<%= blog.title %>" class="w-full h-auto object-cover rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
             </div>
 
-            <div class="w-full max-w-4xl p-4 bg-white rounded-lg shadow-md">
-                <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4"><%= blog.title %></h1>
-                <p class="text-gray-600 leading-relaxed text-base md:text-lg"><%= blog.body %></p>
+            <!-- Blog Content -->
+            <div class="w-full max-w-4xl p-6 bg-white rounded-lg shadow-lg">
+                <h1 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-6 text-center leading-tight"><%= blog.title %></h1>
+                <p class="text-gray-700 text-base md:text-lg leading-relaxed"><%= blog.body %></p>
             </div>
 
-            <div class="flex items-center space-x-4 mt-8">
-                <p class="text-gray-700 font-medium text-lg"> Written By : <%= blog.createdBy.firstName %> <%= blog.createdBy.lastName %></p>
+            <!-- Author Information -->
+            <div class="flex items-center space-x-4 mt-8 text-center">
+                <p class="text-gray-600 font-medium text-lg">
+                    <span class="text-blue-600">Written By:</span> <%= blog.createdBy.firstName %> <%= blog.createdBy.lastName %>
+                </p>
             </div>
         </div>
     </div>
+
+    <!-- Add Comment Section -->
+    <% if (locals.user) { %>
+      <div class="w-full max-w-4xl h-auto flex justify-center items-center flex-col px-4 py-6 md:py-10 bg-blue-50 rounded-lg shadow-md mt-10">
+        <h1 class="text-xl md:text-3xl font-semibold mb-6 text-center text-blue-600">Add your Comment</h1>
+        <form action="/blog/comment/<%= blog._id %>" method="post" class="w-full max-w-lg">
+          <textarea name="content" rows="4" class="w-full border border-gray-300 rounded-lg p-4 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none" placeholder="Write your comment here..."></textarea>
+          <button class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700 transition duration-200 w-full md:w-auto">Post Comment</button>
+        </form>
+      </div>
+    <% } %>
+
+    <!-- Comments Section -->
+    <% if (allComments && allComments.length > 0) { %>
+      <div class="w-full flex flex-col items-center px-4 py-6 md:py-10 space-y-6">
+        <h2 class="text-xl md:text-2xl font-bold mb-4 text-center text-gray-800">Comments (<%= allComments.length %>)</h2>
+        
+        <!-- Loop through each comment -->
+        <% allComments.forEach(function(comment) { %>
+          <div class="w-full max-w-lg border border-gray-200 p-6 rounded-lg bg-white shadow-md hover:shadow-lg transition-shadow duration-200 flex justify-center">
+            <div class="text-center">
+              <pre class="text-gray-800 whitespace-pre-wrap"><%= comment.content %></pre>
+              <p class="text-gray-500 text-sm mt-4">Posted by: <%= comment.createdBy.firstName %> <%= comment.createdBy.lastName %> </p>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } else { %>
+      <p class="text-gray-600 text-center mt-10">No comments yet. Be the first to comment!</p>
+    <% } %>
 </body>
 </html>
