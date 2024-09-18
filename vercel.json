@@ -11,4 +11,4 @@
         "dest":"/"
     }
 ]
-"rewrites": [{ "source": "/(.*)", "destination": "/api" }] }
+}
