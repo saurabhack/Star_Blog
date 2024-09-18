@@ -1,0 +1,68 @@
+<nav class="bg-gray-800 p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <a href="/" class="text-white text-lg font-bold">Star Blog</a>
+
+    <div class="hidden md:flex space-x-4">
+      <a href="/" class="text-gray-300 hover:text-white">Home</a>
+      <% if (locals.user) { %>
+        <a href="/blog/addBlogs" class="text-gray-300 hover:text-white">Add Blogs</a>
+
+        <div class="relative group">
+          <a href="#" class="text-gray-300 hover:text-white">Saurabh</a>
+          <div class="absolute hidden group-hover:block bg-gray-700 text-gray-300 mt-1 py-2 rounded shadow-lg">
+            <a href="/user/profile" class="block px-4 py-2 hover:bg-gray-600">Profile</a>
+            <a href="/user/settings" class="block px-4 py-2 hover:bg-gray-600">Settings</a>
+            <a href="/user/logout" class="block px-4 py-2 hover:bg-gray-600">Logout</a>
+          </div>
+        </div>
+      <% } else { %>
+        <a href="/user/signup" class="text-gray-300 hover:text-white">SignUp</a>
+        <a href="/user/login" class="text-gray-300 hover:text-white">Login</a>
+      <% } %>
+    </div>
+
+    <div class="md:hidden">
+      <button
+        id="mobile-menu-button"
+        class="text-gray-300 focus:outline-none focus:text-white"
+      >
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="md:hidden hidden">
+    <a href="/" class="block px-4 py-2 text-gray-300 hover:text-white">Home</a>
+    <% if (locals.user) { %>
+      <a href="/user/addBlogs" class="block px-4 py-2 text-gray-300 hover:text-white">Add Blogs</a>
+      <a href="/user/profile" class="block px-4 py-2 text-gray-300 hover:text-white">Profile</a>
+      <a href="/user/settings" class="block px-4 py-2 text-gray-300 hover:text-white">Settings</a>
+      <a href="/user/logout" class="block px-4 py-2 text-gray-300 hover:text-white">Logout</a>
+    <% } else { %>
+      <a href="/user/signup" class="block px-4 py-2 text-gray-300 hover:text-white">SignUp</a>
+      <a href="/user/login" class="block px-4 py-2 text-gray-300 hover:text-white">Login</a>
+    <% } %>
+  </div>
+
+  <script>
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    menuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
+</nav>

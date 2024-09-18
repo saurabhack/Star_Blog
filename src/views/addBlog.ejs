@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <%- include('./partials/tailwind') %>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <div class="container mx-auto p-8">
+        <div class="max-w-lg mx-auto bg-white p-6 shadow-md rounded-lg">
+          <h1 class="text-2xl font-bold text-center mb-6">Create a Blog Post</h1>
+    
+          <form action="/blog" method="post" enctype="multipart/form-data">
+            <!-- Title Input -->
+            <div class="mb-4">
+              <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
+              <input 
+                type="text" 
+                id="title" 
+                name="title" 
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                placeholder="Enter blog title"
+                required 
+              />
+            </div>
+    
+            <div class="mb-4">
+              <label for="body" class="block text-sm font-medium text-gray-700">Body</label>
+              <textarea 
+                id="body" 
+                name="body" 
+                rows="5" 
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                placeholder="Write your blog content here..."
+                required
+              ></textarea>
+            </div>
+    
+
+            <div class="mb-4">
+              <label for="coverImageURL" class="block text-sm font-medium text-gray-700">Cover Image URL</label>
+              <input 
+                type="file" 
+                id="coverImageURL" 
+                name="coverImageURL" 
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
+                placeholder="Enter cover image URL"
+              />
+            </div>
+    
+
+            <div>
+              <button 
+                type="submit" 
+                class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>    
+</body>
+</html> 
