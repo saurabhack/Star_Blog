@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Responsive Blog Form</title>
     <%- include('./partials/tailwind') %>
 </head>
 <body>
     <%- include('./partials/nav') %>
-    <div class="container mx-auto p-8">
-        <div class="max-w-lg mx-auto bg-white p-6 shadow-md rounded-lg">
-          <h1 class="text-2xl font-bold text-center mb-6">Create a Blog Post</h1>
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+        <div class="max-w-lg mx-auto bg-white p-4 sm:p-6 shadow-md rounded-lg">
+          <h1 class="text-xl sm:text-2xl font-bold text-center mb-4 sm:mb-6">Create a Blog Post</h1>
     
           <form action="/blog" method="post" enctype="multipart/form-data">
             <!-- Title Input -->
@@ -38,7 +38,7 @@
               ></textarea>
             </div>
     
-
+            <!-- Cover Image URL -->
             <div class="mb-4">
               <label for="coverImageURL" class="block text-sm font-medium text-gray-700">Cover Image URL</label>
               <input 
@@ -46,11 +46,9 @@
                 id="coverImageURL" 
                 name="coverImageURL" 
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" 
-                placeholder="Enter cover image URL"
               />
             </div>
     
-
             <div>
               <button 
                 type="submit" 
@@ -63,4 +61,4 @@
         </div>
       </div>    
 </body>
-</html> 
+</html>

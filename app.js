@@ -1,8 +1,6 @@
-
 import express from "express";
 import mongoose from "mongoose";
 import path from 'path'
-
 import handleUserRouter from './src/routes/userRouter/user.router.js'
 import cookieParser from "cookie-parser";
 import checkForAuthenticationCookies from "./src/middleware/authentication.middleware.js";
@@ -34,10 +32,10 @@ app.use('/blog',handleBlogsRouter)
 
 const port=process.env.PORT || 8000
 
-mongoose.connect(process.env.MONGO_URL || 'mongodb://127.0.0.1:27017/myblogs').then(()=>{
+mongoose.connect('mongodb://127.0.0.1:27017/myblogs').then(()=>{
     console.log("mongodb is connected")
 }).catch((err)=>{
-    console.log(err)
+    console.log("something went wrong with connection = ",err)
 })
 
 app.listen(port,()=>{
